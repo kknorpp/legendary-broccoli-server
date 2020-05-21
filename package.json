@@ -1,0 +1,38 @@
+{
+  "name": "legendary-broccoli-server",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json",
+    "heroku-postbuild": "yarn run migrate up",
+    "migrate": "node-pg-migrate --tsconfig tsconfig.json",
+    "migrate-local": "DATABASE_URL=postgres://postgres@localhost:5432/postgres node-pg-migrate --tsconfig tsconfig.json",
+    "postinstall": "yarn run build",
+    "start": "node lib/index.js",
+    "start-local": "ts-node src/index.ts"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/request-promise": "^4.1.45",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "flyway": "^0.1.9",
+    "fp-ts": "^1.19.5",
+    "node-pg-migrate": "^4.8.0",
+    "pg": "^8.0.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "@types/pg": "^7.14.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.1.2",
+    "typescript": "^3.2.2"
+  },
+  "private": true
+}
